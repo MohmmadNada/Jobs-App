@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS jobstable(
     id SERIAL NOT NULL,
   title TEXT NOT NULL,

@@ -55,7 +55,7 @@ function resultGet(request, response) {
 function mycardHandler(request, response) {
     let SQL = `SELECT * FROM jobstable`;
     client.query(SQL).then(savedRes => {
-        console.log(savedRes.rows);
+
         response.render('mycard', { saveJob: savedRes.rows })
     })
 }

@@ -17,18 +17,25 @@
         </nav>
     </header>
     <main>
+        <%if(saveJob.length==0){%>
 
-        <%saveJob.forEach(element=>{%>
             <div>
-                <h5>
-                    title :
-                    <%=element.title%> <br> company :
-                        <%=element.company%> <br> location :
-                            <%=element.location%> <br>
-                                <%=element.link%>
-                </h5>
+                <h5>no jobs saved</h5>
             </div>
-            <%     })%>
+            <% }else{%>
+                <%saveJob.forEach(element=>{%>
+                    <div>
+                        <h5>
+                            title :
+                            <%=element.title%> <br> company :
+                                <%=element.company%> <br> location :
+                                    <%=element.location%> <br>
+                                        <%=element.link%>
+                        </h5>
+                    </div>
+                    <%     })%>
+                        <%   }%>
+
 
     </main>
 </body>
