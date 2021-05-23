@@ -20,7 +20,10 @@ app.get('/search', searchPageGet);
 app.post('/result', searchPost);
 app.get('/result', resultGet);
 app.get('/mycard', mycardHandler)
-app.post('/mycard', saveJob)
+app.post('/mycard', saveJob);
+app.get('/details/:id', detailsGetHandler)
+app.put('/details/:id', updateJob)
+app.delete('/details/:id', deleteJob)
 
 function homePageHandler(request, response) {
     let url = `https://jobs.github.com/positions.json?location=usa`;
@@ -55,7 +58,6 @@ function resultGet(request, response) {
 function mycardHandler(request, response) {
     let SQL = `SELECT * FROM jobstable`;
     client.query(SQL).then(savedRes => {
-
         response.render('mycard', { saveJob: savedRes.rows })
     })
 }
@@ -76,7 +78,47 @@ function saveJob(request, response) {
     response.redirect('/mycard')
 }
 
+function detailsGetHandler(request, response) {
+    let id = request.params.id;
+    let values = [id];
+    let SQL = `SELECT * FROM jobstable WHERE id=$1`;
+    client.query(SQL, values).then(result => {
+        // let title = result.rows[0].title;
+        // let company = result.rows[0].company;
+        // let location = result.rows[0].location;
+        // let link = result.rows[0].link;
+        // let description = result.rows[0].description;
+        response.render('details', { details: result.rows[0] })
+    })
+}
 
+function updateJob(request, response) {
+    let id = request.body.update[0]
+    let title = request.body.update[1]
+    let company = request.body.update[2]
+    let location = request.body.update[3]
+    let link = request.body.update[4]
+    let description = request.body.update[5]
+    let values = [id, title, company, location, link, description];
+    let SQL = `UPDATE jobstable
+    SET title = $2, company = $3,  location = $4, link = $5, description = $6
+    WHERE id=$1;`
+    client.query(SQL, values).then(updateRes => {
+        console.log('update done');
+    })
+    response.redirect(`/details/${id}`)
+}
+
+function deleteJob(request, response) {
+    let id = request.body.deleteData
+    let SQL = `DELETE FROM jobstable WHERE id=$1;`;
+    let values = [id]
+    client.query(SQL, values).then(updateRes => {
+        console.log('delete done');
+    })
+    response.redirect(`/mycard`)
+
+}
 
 
 

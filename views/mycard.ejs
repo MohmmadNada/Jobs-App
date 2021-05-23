@@ -32,6 +32,10 @@
                                     <%=element.location%> <br>
                                         <%=element.link%>
                         </h5>
+                        <form action="/details/<%=element.id%>" method="GET">
+
+                            <button type="submit">View Details</button>
+                        </form>
                     </div>
                     <%     })%>
                         <%   }%>

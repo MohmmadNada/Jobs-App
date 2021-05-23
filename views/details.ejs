@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/search">search</a>
+            <a href="/mycard">my list</a>
+        </nav>
+    </header>
+    <main>
+        <h2>job details</h2>
+        <h5>
+            title :
+            <%=details.title%> <br> company :
+                <%=details.company%> <br> location :
+                    <%=details.location%> <br>
+                        <%=details.link%> <br> description :
+                            <p>
+                                <%=details.description%>
+                            </p>
+        </h5>
+        <div>
+            <button onclick="myFunction()">Show update Form</button>
+
+            <form action="/details/<%=details.id%>?_method=PUT" method="POST" id="UpdateForm">
+                <input type="hidden" name="update" value="<%=details.id%>">
+                <input type="text" name="update" value="<%=details.title%>">
+                <input type="text" name="update" value="<%=details.company%>">
+                <input type="text" name="update" value="<%=details.location%>">
+                <input type="text" name="update" value="<%=details.link%>">
+                <textarea name="update" id="" cols="30" rows="10"> <%=details.description%></textarea>
+                <button type="submit">Update</button>
+            </form>
+            <form action="/details/<%=details.id%>?_method=DELETE" method="POST">
+                <input type="hidden" name="deleteData" value="<%=details.id%>">
+                <button type="submit">Delete</button>
+
+            </form>
+        </div>
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $('#UpdateForm').hide()
+
+    function myFunction() {
+        $('#UpdateForm').toggle()
+    }
+</script>
+
+</html>
