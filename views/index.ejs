@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/search">search</a>
+            <a href="/mycard">my list</a>
+        </nav>
+    </header>
+    <main>
+        <h2>ALL USA JOBS</h2>
+        <%allResult.forEach(element=>{%>
+            <div>
+                <h4>
+                    title:
+                    <%=element.title%>
+                        <br> company:
+                        <%=element.company%>
+                            <br> location:
+                            <%=element.location%>
+                                <br>
+                                <%=element.link%>
+                </h4>
+            </div>
+            <%})%>
+    </main>
+</body>
+, "company": "My Cosmetic Surgery", "location": "7360 Coral Way, Suite 11, Miami FL, 33155", "link": "https://jobs.github.com/positions/c058d6a5-bad6-435a-85d2-f71e1695f97b"
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/search">search</a>
+            <a href="/mycard">my list</a>
+        </nav>
+    </header>
+    <main>
+
+        <%saveJob.forEach(element=>{%>
+            <div>
+                <h5>
+                    title :
+                    <%=element.title%> <br> company :
+                        <%=element.company%> <br> location :
+                            <%=element.location%> <br>
+                                <%=element.link%>
+                </h5>
+            </div>
+            <%     })%>
+
+    </main>
+</body>
+
+</html>
